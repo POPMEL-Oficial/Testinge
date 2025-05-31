@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPMEL Oficial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '24192442997008925');
+    fbq('track', 'PageView');
+    
+    // Helper functions for tracking
+    function generateEventId() {
+      return 'event_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    }
+    
+    function getCookieValue(name) {
+      const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return match ? match.pop() : '';
+    }
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=24192442997008925&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <script src="integration.js"></script> 
+    <!-- Signals Gateway Pixel Code -->
+    <script>
+    !function(a,h,e,v,n,t,s)
+    {if(a.cbq)return;n=a.cbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!a._cbq)a._cbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=h.createElement(e);t.async=!0;
+    t.src=v;s=h.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://sgw.stape.ac/sdk/6270750353599129361/events.js');
+    cbq('setHost', 'https://sgw.stape.ac/');
+    cbq('init', '6270750353599129361');
+    cbq('track', 'PageView', {
+      event_source_url: window.location.href,
+      user_data: {
+        client_user_agent: navigator.userAgent,
+        fbp: getCookieValue('_fbp'),
+        fbc: getCookieValue('_fbc')
+      }
+    });
+    </script>
+    <!-- End Signals Gateway Pixel Code -->
+    
+    <!-- Popup Styles -->
+    <style>
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    
+    .popup-container {
+        background: white;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 12px;
+        overflow: hidden;
+        animation: popupFadeIn 0.3s ease-out;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes popupFadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .popup-header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+    }
+    
+    .popup-close {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #888;
+    }
+    
+    .popup-image-container {
+        width: 100%;
+        text-align: center;
+        background: #f8f8f8;
+    }
+    
+    .popup-image {
+        max-width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: contain;
+    }
+    
+    .popup-content {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .popup-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    
+    .popup-description {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    
+    .popup-telegram-btn {
+        display: block;
+        background: #0088cc;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .popup-telegram-btn i {
+        margin-right: 5px;
+    }
+    
+    .popup-telegram-btn:hover {
+        background: #006aa9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .popup-continue-btn {
+        display: block;
+        background: #4CAF50;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .popup-continue-btn:hover {
+        background: #43a047;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <header class="app-header">
+            <div class="google-play">
+                <img src="images/Google_Play-Logo.wine.png" alt="Google Play" class="gp-logo">
+                <div class="dev-badge">
+                    <img src="images/TopDeveloper.png" alt="Top Developer">
+                </div>
+            </div>
+        </header>
+
+        <!-- App Info Section -->
+        <section class="app-info">
+            <div class="app-identity">
+                <img src="images/POPMELLOGO.webp" alt="POPMEL" class="app-icon">
+                <div class="app-title">
+                    <h1>POPMEL</h1>
+                    <h2 class="app-url">POPMEL.COM</h2>
+                    <p class="verification">Verificado pelo aplicativo</p>
+                </div>
+            </div>
+            
+            <div class="app-stats">
+                <div class="stat">
+                    <div class="rating">4.9 <i class="fas fa-star"></i></div>
+                    <div class="reviews">300.000+ reviews</div>
+                </div>
+                <div class="stat">
+                    <div class="downloads">1M+</div>
+                    <div class="downloading">Baixando</div>
+                </div>
+                <div class="stat">
+                    <div class="age-rating">18+</div>
+                    <div class="age-info">Rated for 18+</div>
+                </div>
+            </div>
+            
+            <a href="https://popmel33.com/main/inicio?ch=25837" class="install-btn" id="installButton">
+                <i class="fas fa-bolt"></i> Cadastre-se, deposite R$ 20 e reivindique seus bônus diários, semanais e de código instantaneamente!
+            </a>
+            
+            <div class="action-buttons">
+                <button class="action-btn share-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+                <button class="action-btn wishlist-btn">
+                    <i class="far fa-bookmark"></i> Add to wishlist
+                </button>
+            </div>
+        </section>
+        
+        <!-- Carousel Section -->
+        <section class="app-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item"><img src="images/Image1.jpg" alt="Fortune Tiger Promo" class="portrait-image"></div><div class="carousel-item"><img src="images/Image5.jpg" alt="Fortune Tiger Promo" class="portrait-image"></div><div class="carousel-item"><img src="images/Image3.jpg" alt="Fortune Tiger Promo" class="portrait-image"></div><div class="carousel-item"><img src="images/Image4.jpg" alt="Fortune Tiger Promo" class="portrait-image"></div><div class="carousel-item"><img src="images/Image2.jpg" alt="Fortune Tiger Promo" class="portrait-image"></div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-indicators"></div>
+                    <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="section-header">
+                <h2>Sobre este aplicativo</h2>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <p class="app-description">POPMEL.COM</p>
+            <div class="bonus-list">
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Bonus de boas vindas R$ 203</span>
+                </div>
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Bonus de indicação R$ 100 até</span>
+                </div>
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Novos membros podem ganhar até R$ 500 em bonus após fazer login no dia seguinte!</span>
+                </div>
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Bonus novo membro dias 2, 3, 7, 15, 30 ganhe um bonus misterioso até R$ 7.777</span>
+                </div>
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Bonus de nivel vip diário e mensal, comece agora! o evento está em andamento!</span>
+                </div>
+            </div>
+
+            <div class="app-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Atualizado em</span>
+                    <span class="meta-value">May 18, 2025</span>
+                </div>
+            </div>
+
+            <div class="app-tags">
+                <span class="tag">#1 principais apps gratuitos ação</span>
+                <span class="tag">Ação</span>
+                <span class="tag">Jogos de plataforma</span>
+                <span class="tag">Casual</span>
+                <span class="tag">Multiplayer</span>
+                <span class="tag">Estilizado</span>
+            </div>
+        </section>
+
+        <!-- Data Security Section -->
+        <section class="security-section">
+            <div class="section-header">
+                <h2>Segurança dos dados</h2>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <p class="security-intro">
+                Sua segurança começa com o entendimento de como os desenvolvedores coletam e compartilham seus dados. As práticas de segurança e privacidade de dados podem variar de acordo com o uso, a região e a idade. O desenvolvedor forneceu as informações a seguir, que podem ser atualizadas ao longo do tempo.
+            </p>
+
+            <div class="security-item">
+                <i class="fas fa-share-alt"></i>
+                <div class="security-content">
+                    <h3>Este app pode compartilhar estes tipos de dados com terceiros</h3>
+                    <p>Local, Informações financeiras e Identificadores do dispositivo e outros</p>
+                </div>
+            </div>
+
+            <div class="security-item">
+                <i class="fas fa-cloud-download-alt"></i>
+                <div class="security-content">
+                    <h3>Este app pode coletar estes tipos de dados</h3>
+                    <p>Local, Informações pessoais e mais 5</p>
+                </div>
+            </div>
+
+            <div class="security-item">
+                <i class="fas fa-lock"></i>
+                <div class="security-content">
+                    <h3>Os dados não são criptografados</h3>
+                </div>
+            </div>
+
+            <div class="security-item">
+                <i class="fas fa-trash-alt"></i>
+                <div class="security-content">
+                    <h3>Você pode solicitar a exclusão dos dados</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="section-header">
+                <h2>Classificações e revisões</h2>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <p class="reviews-intro">
+                As avaliações e avaliações são verificadas e de pessoas que usam o mesmo tipo de dispositivo que você usa.
+            </p>
+
+            <div class="device-selector">
+                <button class="device-btn active">
+                    <i class="fas fa-mobile-alt"></i> Telephone
+                </button>
+                <button class="device-btn">
+                    <i class="fas fa-tablet-alt"></i> Tablet
+                </button>
+                <button class="device-btn">
+                    <i class="fas fa-laptop"></i> Chromebook
+                </button>
+            </div>
+
+            <div class="rating-summary">
+                <div class="big-rating">
+                    <span class="big-rating-value">4.9</span>
+                    <div class="big-rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="total-ratings">300.000</span>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar-row">
+                        <span class="rating-bar-label">5</span>
+                        <div class="rating-bar">
+                            <div class="rating-bar-fill level-5"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <span class="rating-bar-label">4</span>
+                        <div class="rating-bar">
+                            <div class="rating-bar-fill level-4"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <span class="rating-bar-label">3</span>
+                        <div class="rating-bar">
+                            <div class="rating-bar-fill level-3"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <span class="rating-bar-label">2</span>
+                        <div class="rating-bar">
+                            <div class="rating-bar-fill" style="width: 0.5%"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <span class="rating-bar-label">1</span>
+                        <div class="rating-bar">
+                            <div class="rating-bar-fill" style="width: 0.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-list">
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://i.pravatar.cc/40?img=3" alt="Miguel" class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h3>Miguel</h3>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="review-date">Mei 7, 2025</span>
+                            </div>
+                        </div>
+                        <button class="more-options-btn">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                    <p class="review-text">Jogo divertido com bônus enormes</p>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://i.pravatar.cc/40?img=7" alt="Jose" class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h3>Jose</h3>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="review-date">January 5, 2025</span>
+                            </div>
+                        </div>
+                        <button class="more-options-btn">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                    <p class="review-text">Jogo casual muito divertido, você também pode ganhar dinheiro</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Links Section -->
+        <section class="footer-links">
+            <div class="link-group">
+                <a href="#">Google Play</a>
+                <a href="#">Play Pass</a>
+                <a href="#">Play Points</a>
+                <a href="#">Vales-presente</a>
+                <a href="#">Resgatar</a>
+                <a href="#">Política de reembolso</a>
+                <a href="#">Crianças e família</a>
+                <a href="#">Guia para a família</a>
+                <a href="#">Compartilhamento em família</a>
+            </div>
+            <div class="link-row">
+                <a href="#">Termos de Serviço</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Sobre o Google Play</a>
+            </div>
+            <div class="link-row">
+                <a href="#">Desenvolvedores</a>
+                <a href="#">Google Store</a>
+                <a href="#">Todos os preços incluem Tributo</a>
+            </div>
+        </section>
+        
+        <!-- Navigation Footer -->
+        <footer class="app-nav">
+            <button class="nav-item active">
+                <i class="fas fa-gamepad"></i>
+                <span>Games</span>
+            </button>
+            <button class="nav-item">
+                <i class="fas fa-th"></i>
+                <span>Apps</span>
+            </button>
+            <button class="nav-item">
+                <i class="fas fa-film"></i>
+                <span>Movies</span>
+            </button>
+            <button class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Books</span>
+            </button>
+            <button class="nav-item">
+                <i class="fas fa-child"></i>
+                <span>Kids</span>
+            </button>
+        </footer>
+    </div>
+    
+    <!-- Custom Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <button class="popup-close" id="popupClose">×</button>
+            </div>
+            <div class="popup-image-container">
+                <img src="images/POPMEL Bonus.png" alt="App Promo" class="popup-image" id="popupImage">
+            </div>
+            <div class="popup-content">
+                <h3 class="popup-title" id="popupTitle">POPMEL - Suporte Exclusivo</h3>
+                <p class="popup-description" id="popupDescription">
+                    Canal de bônus exclusivo para ajudar o novo membro!
+                </p>
+                <a href="https://t.me/luizgabs13" class="popup-telegram-btn" id="mentorButton" style="background-color: #0099ff; margin-top: 10px;" target="_blank">
+                    <i class="fab fa-telegram"></i> Para reivindicar o bônus e acessar o canal, clique aqui!
+                </a>
+                <a href="https://popmel33.com/main/inicio?ch=25837" class="popup-continue-btn" id="continueButton">
+                    Continuar para continuar com o cadastro
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="images/placeholder.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightboxOverlay" class="lightbox-overlay">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+    <!-- End Image Lightbox Modal -->
+
+    <!-- Popup Script -->
+    <script>
+    // Popup Configuration - Easy to customize
+    const popupConfig = {
+        image: "images/POPMEL Bonus.png",
+        title: "POPMEL - Suporte Exclusivo",
+        description: "Canal de bônus exclusivo para ajudar o novo membro!",
+        mentorLink: "https://t.me/luizgabs13",
+        mentorButtonText: "Para reivindicar o bônus e acessar o canal, clique aqui!",
+        continueLink: "https://popmel33.com/main/inicio?ch=25837",
+        continueButtonText: "Continuar para continuar com o cadastro"
+    };
+    
+    // Elements
+    const installButton = document.getElementById('installButton');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popupClose = document.getElementById('popupClose');
+    const popupImage = document.getElementById('popupImage');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupDescription = document.getElementById('popupDescription');
+    const mentorButton = document.getElementById('mentorButton');
+    const continueButton = document.getElementById('continueButton');
+    
+    // Apply configuration
+    function applyPopupConfig() {
+        popupImage.src = popupConfig.image;
+        popupTitle.textContent = popupConfig.title;
+        popupDescription.textContent = popupConfig.description;
+        mentorButton.href = popupConfig.mentorLink;
+        mentorButton.innerHTML = `<i class="fab fa-telegram"></i> ${popupConfig.mentorButtonText}`;
+        continueButton.href = popupConfig.continueLink;
+        continueButton.textContent = popupConfig.continueButtonText;
+    }
+    
+    // Initialize popup
+    applyPopupConfig();
+    
+    // Short popup when install button is clicked
+    installButton.addEventListener('click', function(e) {
+        // Don't prevent default - allow normal link navigation
+        // e.preventDefault();
+        
+        // Generate unique ID for this event
+        const eventId = generateEventId();
+        const eventData = {
+            content_name: 'POPMEL App Installation',
+            content_category: 'Gaming Apps',
+            content_type: 'product_installation',
+            step: 'final'
+        };
+        
+        // Track with Meta Pixel - CompleteInstallation instead of Purchase
+        fbq('track', 'CompleteInstallation', eventData, {eventID: eventId});
+        
+        // Track with Gateway Pixel - CompleteInstallation instead of Purchase
+        cbq('track', 'CompleteInstallation', {
+            event_id: eventId,
+            event_source_url: window.location.href,
+            user_data: {
+                client_user_agent: navigator.userAgent,
+                fbp: getCookieValue('_fbp'),
+                fbc: getCookieValue('_fbc')
+            },
+            custom_data: eventData 
+        });
+        
+        // Remove this line to prevent showing the popup
+        // popupOverlay.style.display = 'flex';
+    });
+    
+    // Close popup
+    popupClose.addEventListener('click', function() {
+        popupOverlay.style.display = 'none';
+    });
+    
+    // Close popup when clicking outside the popup
+    popupOverlay.addEventListener('click', function(e) {
+        if (e.target === popupOverlay) {
+            popupOverlay.style.display = 'none';
+        }
+    });
+    
+    // Track mentor button click
+    mentorButton.addEventListener('click', function() {
+        // Track with Meta Pixel
+        fbq('track', 'Lead', {
+            content_name: 'Mentor Contact',
+            content_category: 'Support'
+        });
+        
+        // Track with Gateway Pixel
+        cbq('track', 'Lead', {
+            event_source_url: window.location.href,
+            user_data: {
+                client_user_agent: navigator.userAgent,
+                fbp: getCookieValue('_fbp'),
+                fbc: getCookieValue('_fbc')
+            },
+            custom_data: {
+                content_name: 'Mentor Contact',
+                content_category: 'Support'
+            }
+        });
+    });
+    
+    // Track continue button click
+    continueButton.addEventListener('click', function() {
+        // Generate unique ID for this specific event
+        const continueEventId = generateEventId() + '_continue';
+        
+        // Track with Meta Pixel - with different event name and ID
+        fbq('track', 'CompleteInstallation', {
+            content_name: 'POPMEL App Installation',
+            content_category: 'Gaming Apps',
+            content_type: 'product_installation',
+            step: 'final'
+        }, {eventID: continueEventId});
+        
+        // Track with Gateway Pixel - with different event name and ID
+        cbq('track', 'CompleteInstallation', {
+            event_id: continueEventId,
+            event_source_url: window.location.href,
+            user_data: {
+                client_user_agent: navigator.userAgent,
+                fbp: getCookieValue('_fbp'),
+                fbc: getCookieValue('_fbc')
+            },
+            custom_data: {
+                content_name: 'POPMEL App Installation',
+                content_category: 'Gaming Apps',
+                content_type: 'product_installation',
+                step: 'final'
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

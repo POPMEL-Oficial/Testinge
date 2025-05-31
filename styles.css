@@ -1,0 +1,764 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* Mobile Container */
+.mobile-container {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background-color: #fff;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Header */
+.app-header {
+    padding: 0 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.google-play {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gp-logo {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+    margin: -20px 0;
+    display: block;
+}
+
+.dev-badge img {
+    height: 60px;
+    margin-right: 10px;
+}
+
+/* App Info Section */
+.app-info {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.app-identity {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    margin-right: 16px;
+    object-fit: cover;
+}
+
+.app-title h1 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: #202124;
+}
+
+.app-url {
+    font-size: 16px;
+    font-weight: 500;
+    color: #018786;
+    margin-bottom: 4px;
+}
+
+.verification {
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.app-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat {
+    text-align: center;
+    flex: 1;
+}
+
+.rating, .downloads, .age-rating {
+    font-size: 16px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 4px;
+}
+
+.reviews, .downloading, .age-info {
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.fa-star {
+    color: #ffc107;
+}
+
+.install-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #00897B;
+    color: white;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.install-btn:hover {
+    background-color: #00796B;
+}
+
+.install-btn i {
+    margin-right: 8px;
+}
+
+.install-subtext {
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 2px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #00897B;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.action-btn i {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+/* Carousel Section */
+.app-carousel {
+    padding: 16px 0;
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    padding: 0;
+    gap: 0;
+    font-size: 0; /* Remove any inline space */
+    line-height: 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-item {
+    min-width: 180px;
+    height: 320px;
+    scroll-snap-align: start;
+    position: relative;
+    margin: 0 2px;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0; /* Remove any inline space */
+    line-height: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: transparent;
+    display: block; /* Eliminate bottom space */
+}
+
+.portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.promo-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    color: #fff;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.promo-text h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.promo-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+}
+
+.carousel-indicators {
+    display: flex;
+    gap: 6px;
+    margin: 0 16px;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #dadce0;
+    border-radius: 50%;
+}
+
+.indicator.active {
+    background-color: #00897B;
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* About Section */
+.about-section {
+    padding: 16px;
+    border-top: 8px solid #f5f5f5;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #202124;
+}
+
+.app-description {
+    font-size: 14px;
+    color: #5f6368;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* Bonus List */
+.bonus-list {
+    margin-bottom: 16px;
+}
+
+.bonus-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #5f6368;
+}
+
+.bonus-item i {
+    color: #f9a825;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+/* App Meta */
+.app-meta {
+    padding: 8px 0;
+    margin-bottom: 16px;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.meta-label {
+    color: #5f6368;
+    margin-bottom: 4px;
+}
+
+.meta-value {
+    color: #202124;
+    font-weight: 500;
+}
+
+/* App Tags */
+.app-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tag {
+    background-color: #f1f3f4;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    color: #5f6368;
+}
+
+/* Security Section */
+.security-section {
+    padding: 16px;
+    border-top: 8px solid #f5f5f5;
+    background-color: #ffffff;
+}
+
+.security-intro {
+    font-size: 14px;
+    color: #5f6368;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.security-item {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.security-item:last-child {
+    border-bottom: none;
+}
+
+.security-item i {
+    font-size: 20px;
+    color: #5f6368;
+    margin-right: 16px;
+    min-width: 24px;
+    text-align: center;
+}
+
+.security-content h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 4px;
+}
+
+.security-content p {
+    font-size: 13px;
+    color: #5f6368;
+}
+
+/* Reviews Section */
+.reviews-section {
+    padding: 16px;
+    border-top: 8px solid #f5f5f5;
+    background-color: #ffffff;
+}
+
+.reviews-intro {
+    font-size: 14px;
+    color: #5f6368;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.device-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.device-btn {
+    background-color: #f1f3f4;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #5f6368;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.device-btn.active {
+    background-color: #e8f0fe;
+    color: #00897B;
+}
+
+.rating-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 16px 0;
+}
+
+.big-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.big-rating-value {
+    font-size: 48px;
+    font-weight: 500;
+    color: #202124;
+    line-height: 1;
+}
+
+.big-rating-stars {
+    margin: 8px 0;
+}
+
+.total-ratings {
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.rating-bars {
+    flex: 1;
+}
+
+.rating-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.rating-bar-label {
+    font-size: 12px;
+    color: #5f6368;
+    width: 15px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+.rating-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rating-bar-fill {
+    height: 100%;
+    background-color: #00897B;
+    border-radius: 4px;
+}
+
+.rating-bar-fill.level-5 {
+    background-color: #00897B;
+    width: 95%;
+}
+
+.rating-bar-fill.level-4 {
+    background-color: #00897B;
+    width: 3%;
+}
+
+.rating-bar-fill.level-3 {
+    background-color: #00897B;
+    width: 1%;
+}
+
+.review-list {
+    margin-bottom: 16px;
+}
+
+.review {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+.review-header {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.reviewer-info {
+    flex: 1;
+}
+
+.reviewer-info h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 4px;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+}
+
+.review-stars {
+    font-size: 12px;
+    color: #ffc107;
+    margin-right: 8px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.more-options-btn {
+    background: none;
+    border: none;
+    color: #5f6368;
+    font-size: 16px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.review-text {
+    font-size: 14px;
+    color: #202124;
+    line-height: 1.4;
+}
+
+/* Footer Links */
+.footer-links {
+    padding: 16px;
+    border-top: 8px solid #f5f5f5;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.footer-links a {
+    color: #5f6368;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #00897B;
+}
+
+/* Navigation Footer */
+.app-nav {
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    padding: 8px 0;
+    z-index: 10;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 8px 0;
+    color: #5f6368;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-item.active {
+    color: #00897B;
+}
+
+/* Responsiveness */
+@media (max-width: 500px) {
+    .mobile-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+    }
+    
+    .carousel-item {
+        min-width: 180px;
+        margin: 0 2px;
+    }
+
+    .carousel-track {
+        padding: 0;
+    }
+}
+
+/* Scrollbar styling */
+.mobile-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.mobile-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.mobile-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.mobile-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Lightbox Styles */
+.lightbox-overlay {
+    position: fixed;
+    z-index: 10000; /* Ensure it's on top of other popups */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+    animation-name: lightboxZoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes lightboxZoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Ensure carousel images are clickable */
+.carousel-item img {
+    cursor: pointer;
+}
+
+/* Responsive adjustments for smaller screens */
+@media only screen and (max-width: 700px){
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    .lightbox-close {
+        font-size: 30px;
+        top: 15px;
+        right: 25px;
+    }
+} 

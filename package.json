@@ -1,0 +1,26 @@
+{
+  "name": "app-store-design",
+  "version": "1.0.0",
+  "description": "A responsive web design that mimics a Google Play Store app page",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "app",
+    "store",
+    "design",
+    "responsive",
+    "frontend"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
